@@ -1,0 +1,31 @@
+{
+    "name": "ed-price-check",
+    "version": "1.0.0",
+    "description": "Watch EDDN for stations buying the target commodity above some price/demand threshold.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/irtnog/ed-price-check.git"
+    },
+    "keywords": [
+        "Elite Dangerous",
+        "Elite Dangerous Data Network",
+        "EDDN",
+        "buy order",
+        "notification"
+    ],
+    "author": "Matthew X. Economou",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/irtnog/ed-price-check/issues"
+    },
+    "homepage": "https://github.com/irtnog/ed-price-check#readme",
+    "dependencies": {
+        "zeromq": "^6.0.0-beta.6",
+        "zlib": "^1.0.5"
+    }
+}
