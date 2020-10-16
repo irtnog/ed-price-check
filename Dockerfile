@@ -3,7 +3,7 @@ COPY --chown=node:node . /home/node/app/
 WORKDIR /home/node/app
 USER node
 RUN set -eux; \
-        npm install
+        npm ci --only=production
 
 FROM node:14.13.1-slim
 COPY --chown=node:node --from=build /home/node/app/ /home/node/app/
