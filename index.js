@@ -15,7 +15,9 @@ sock.on('message', topic => {
             if (commodity.name == 'painite') {
                 const price = commodity.sellPrice;
                 const demand = commodity.demand;
-                console.log(station + ' in ' + system + ' buying ' + demand + ' tonnes painite for ' + price + ' CR');
+                if (price >= 950000 && demand >= 1000) {
+                    console.log(station + ' in ' + system + ' buying ' + demand + ' tonnes painite for ' + price + ' CR');
+                }
                 break;
             }
         }
