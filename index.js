@@ -7,5 +7,17 @@ sock.subscribe('');
 console.log('Subscriber connected to EDDN');
 
 sock.on('message', topic => {
-  console.log(JSON.parse(zlib.inflateSync(topic)));
+    let datum = JSON.parse(zlib.inflateSync(topic));
+    if (datum['$schemaRef'] == 'https://eddn.edcd.io/schemas/commodity/3') {
+        const system = datum.message.systemName;
+        const station = datum.message.stationName;
+        for (const commodity of datum.message.commodities) {
+            if (commodity.name == 'painite') {
+                const price = commodity.sellPrice;
+                const demand = commodity.demand;
+                console.log(station + ' in ' + system + ' buying ' + demand + ' tonnes painite for ' + price + ' CR');
+                break;
+            }
+        }
+    }
 });
