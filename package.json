@@ -25,6 +25,7 @@
     },
     "homepage": "https://github.com/irtnog/ed-price-check#readme",
     "dependencies": {
+        "aws-sdk": "^2.772.0",
         "zeromq": "^6.0.0-beta.6",
         "zlib": "^1.0.5"
     }
