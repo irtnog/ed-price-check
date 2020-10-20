@@ -121,3 +121,6 @@ dist
 
 # project-specific
 build.sh
+example.template
+LICENSE
+README.md

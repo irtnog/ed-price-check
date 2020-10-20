@@ -1,0 +1,33 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "SNSTopic": {
+            "Type": "AWS::SNS::Topic",
+            "Properties": {
+                "TopicName": "ed-price-check"
+            }
+        },
+        "IAMUser": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "ed-price-check",
+                "Policies": [
+                    {
+                        "PolicyName": "ed-price-check",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Sid": "AllowSnsPublish",
+                                    "Effect": "Allow",
+                                    "Action": "sns:Publish",
+                                    "Resource": {"Ref": "SNSTopic"}
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
