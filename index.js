@@ -20,7 +20,7 @@ sock.on('message', topic => {
             if (commodity.name == 'painite') {
                 const price = commodity.sellPrice;
                 const demand = commodity.demand;
-                if (price >= 950000 && demand >= 1000 && !seen[system+station] || seen[system+station] < timestamp) {
+                if (price >= 950000 && demand >= 1000 && (!seen[system+station] || (seen[system+station] < timestamp))) {
                     let message = station + ' in ' + system + ' buying ' + demand + ' tonnes painite for ' + price + ' CR';
                     console.log(message);
                     sns.publish({TopicArn: process.env.TOPIC_ARN, Message: message}, (err, data) => {
