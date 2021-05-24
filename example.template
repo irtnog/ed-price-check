@@ -1,33 +1,29 @@
-{
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Resources": {
-        "SNSTopic": {
-            "Type": "AWS::SNS::Topic",
-            "Properties": {
-                "TopicName": "ed-price-check"
-            }
-        },
-        "IAMUser": {
-            "Type": "AWS::IAM::User",
-            "Properties": {
-                "UserName": "ed-price-check",
-                "Policies": [
-                    {
-                        "PolicyName": "ed-price-check",
-                        "PolicyDocument": {
-                            "Version": "2012-10-17",
-                            "Statement": [
-                                {
-                                    "Sid": "AllowSnsPublish",
-                                    "Effect": "Allow",
-                                    "Action": "sns:Publish",
-                                    "Resource": {"Ref": "SNSTopic"}
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
-    }
-}
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Resources:
+  SnsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Ref AWS::StackName
+
+  IAMUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref AWS::StackName
+      Policies:
+        - PolicyName: ed-price-check
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Sid: AllowSnsPublish
+                Effect: Allow
+                Action: sns:Publish
+                Resource: !Ref SnsTopic
+
+
+Outputs:
+  SnsTopicManagementUri:
+    Description: SNS topic subscriber management
+    Value: !Sub https://console.aws.amazon.com/sns/v3/home?region=${AWS::Region}#/topic/${SnsTopic}
